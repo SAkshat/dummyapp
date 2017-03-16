@@ -2,7 +2,7 @@ require 'csv'
 
 class Website < ActiveRecord::Base
 
-  FILE_PATH = '/Users/akshatsinghal/Work/influxDB/dummyapp/db/seeds/data/traffic_data.csv'
+  FILE_PATH = 'db/seeds/data/traffic_data.csv'
 
   def self.seed_postgres
     CSV.foreach(FILE_PATH, col_sep: ',', headers: false) do |row|
