@@ -4,23 +4,15 @@ class Website < ActiveRecord::Base
 
   FILE_PATH = 'db/seeds/data/traffic_data.csv'
 
-  def self.seed_postgres
-    CSV.foreach(FILE_PATH, col_sep: ',', headers: false) do |row|
-      Website.new(name: row[0], region: row[1], traffic: row[2], timestamp: row[3]).save
-    end
-  end
-
-  def self.seed_influx
+  def self.seed_influx(data)
     influxdb = InfluxDB::Client.new('influx', repeat: 5)
-    CSV.foreach(FILE_PATH, col_sep: ',', headers: false) do |row|
-      influxdb.write_point(
-        'website',
-        {
-          values:    { traffic: row[2] },
-          tags:      { name: row[0], region: row[1] },
-          timestamp: Time.parse(row[3]).to_i
-        }
-      )
-    end
+    influxdb.write_point(
+      'website',
+      {
+        values:    { traffic: data[:traffic] },
+        tags:      { name: data[:name], region: data[:region] },
+        timestamp: data[:timestamp].to_i
+      }
+    )
   end
 end
