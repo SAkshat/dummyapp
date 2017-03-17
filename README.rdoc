@@ -1,28 +1,14 @@
-== README
+## Setup
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Install [Git](http://git-scm.com/), [RVM](https://rvm.io/), PostgreSQL, [InfluxDB](https://portal.influxdata.com/downloads#influxdb).
 
-Things you may want to cover:
+    $ git clone https://github.com/SAkshat/dummyapp.git
+    $ cd dummyapp/ # prompted by RVM
+    $ bundle
+    $ rake db:create
+    $ rake db:migrate
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+Addons Used
+===========
+Postgres
+InfluxDB
